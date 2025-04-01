@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Default page background remains unchanged */
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 150px;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  background-color: #5a67d8;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+.run-button {
+  margin-top: 20px;
+}
+
+.selections {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.subheader {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Styling for the processes table */
+.process-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.process-table th,
+.process-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.process-table th {
+  background-color: #f7fafc;
+}
+
+/* Styling for inline input fields in the table */
+.table-input {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Timeline styles */
+.timeline-container {
+  margin-top: 30px;
+}
+
+.timeline-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cpu-label {
+  width: 60px;
+  font-weight: bold;
+}
+
+.timeline-bar {
+  flex: 1;
+  display: flex;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+.timeline-event {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  color: #fff;
+  font-weight: bold;
+  border-right: 1px solid #fff;
+  overflow: hidden;
+  font-size: 0.9rem;
 }

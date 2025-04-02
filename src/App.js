@@ -220,7 +220,6 @@ function App() {
                 disabled={!useCustomQuantum}
                 step="1"
               />
-              {!useCustomQuantum && <span className="note"> (Default = 1)</span>}
             </div>
             <button onClick={generateProcessesHandler} className="button">Generate Processes</button>
           </div>

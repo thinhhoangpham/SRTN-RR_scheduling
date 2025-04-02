@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SRTN-RR_scheduling/static/css/main.4fb1d5a7.css",
-    "main.js": "/SRTN-RR_scheduling/static/js/main.5b9a2f9b.js",
+    "main.js": "/SRTN-RR_scheduling/static/js/main.ce5b64b2.js",
     "static/js/453.0a794065.chunk.js": "/SRTN-RR_scheduling/static/js/453.0a794065.chunk.js",
     "index.html": "/SRTN-RR_scheduling/index.html",
     "main.4fb1d5a7.css.map": "/SRTN-RR_scheduling/static/css/main.4fb1d5a7.css.map",
-    "main.5b9a2f9b.js.map": "/SRTN-RR_scheduling/static/js/main.5b9a2f9b.js.map",
+    "main.ce5b64b2.js.map": "/SRTN-RR_scheduling/static/js/main.ce5b64b2.js.map",
     "453.0a794065.chunk.js.map": "/SRTN-RR_scheduling/static/js/453.0a794065.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4fb1d5a7.css",
-    "static/js/main.5b9a2f9b.js"
+    "static/js/main.ce5b64b2.js"
   ]
 }

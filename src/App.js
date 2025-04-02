@@ -30,6 +30,7 @@ function App() {
   const [quantum, setQuantum] = useState('1'); // default value
   const [useCustomQuantum, setUseCustomQuantum] = useState(false);
   const [processes, setProcesses] = useState([]);
+  const [initialProcesses, setInitialProcesses] = useState([]); // to restore later
   const [timeline, setTimeline] = useState([]); // Timeline state
 
   // When the dropdown value changes, update the fields and processes.
@@ -49,6 +50,7 @@ function App() {
         new Process(4, 2, 8),   // P4: arrival 2, burst 8
       ];
       setProcesses(ex1);
+      setInitialProcesses(ex1);
     } else if (value === "example2") {
       // Example 2: same processes, quantum = 2
       setNumCpus("2");
@@ -62,11 +64,11 @@ function App() {
         new Process(4, 2, 8),
       ];
       setProcesses(ex2);
-    }
-    else if (value === "example3") {
+      setInitialProcesses(ex2);
+    } else if (value === "example3") {
       // Example 3: 3 CPUs, 7 processes, quantum = 2
       setNumCpus("3");
-      setUseCustomQuantum(true); // enable custom quantum input
+      setUseCustomQuantum(true); // allow custom quantum input
       setQuantum("2");
       setNumProcesses("7");
       const ex3 = [
@@ -79,6 +81,7 @@ function App() {
         new Process(7, 6, 4),  // Process 7: arrival at 6, burst time 4
       ];
       setProcesses(ex3);
+      setInitialProcesses(ex3);
     } else {
       // Custom: allow manual entry.
       setNumCpus('');
@@ -86,6 +89,7 @@ function App() {
       setUseCustomQuantum(false);
       setNumProcesses('');
       setProcesses([]);
+      setInitialProcesses([]);
     }
   };
 
@@ -118,6 +122,7 @@ function App() {
     }
     const procs = createProcesses(procCount);
     setProcesses(procs);
+    setInitialProcesses(procs);
   };
 
   const handleProcessFieldChange = (id, field, value) => {
@@ -164,6 +169,12 @@ function App() {
     setProcesses(result.processes);
     setTimeline(result.timeline);
     alert(`RR Simulation finished in ${result.totalTime} seconds.`);
+  };
+
+  // Reset simulation to initial state
+  const resetSimulation = () => {
+    setTimeline([]);
+    setProcesses(initialProcesses);
   };
 
   return (
@@ -245,13 +256,31 @@ function App() {
               </tbody>
             </table>
             <div className="button-group">
-              <button onClick={runSimulationHandler} className="button run-button">Run SRTN Simulation</button>
-              <button onClick={runRRSimulationHandler} className="button run-button">Run RR Simulation</button>
+              <button 
+                onClick={runSimulationHandler} 
+                className="button run-button" 
+                style={{ marginRight: '10px' }}
+              >
+                Run SRTN Simulation
+              </button>
+              <button 
+                onClick={runRRSimulationHandler} 
+                className="button run-button" 
+                style={{ marginRight: '10px' }}
+              >
+                Run RR Simulation
+              </button>
+              <button 
+                onClick={resetSimulation} 
+                className="button reset-button"
+              >
+                Reset Simulation
+              </button>
             </div>
 
             {/* Visual Timeline Chart */}
             {timeline.length > 0 && (
-              <GanttChartLikeImage timeline={timeline} numCpus={parseInt(numCpus, 10)} quantum={effectiveQuantum}/>
+              <GanttChartLikeImage timeline={timeline} numCpus={parseInt(numCpus, 10)} quantum={effectiveQuantum} />
             )}
           </div>
         )}

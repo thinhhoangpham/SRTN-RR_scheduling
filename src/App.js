@@ -62,6 +62,23 @@ function App() {
         new Process(4, 2, 8),
       ];
       setProcesses(ex2);
+    }
+    else if (value === "example3") {
+      // Example 3: 3 CPUs, 7 processes, quantum = 2
+      setNumCpus("3");
+      setUseCustomQuantum(true); // enable custom quantum input
+      setQuantum("2");
+      setNumProcesses("7");
+      const ex3 = [
+        new Process(1, 0, 4),  // Process 1: arrival at 0, burst time 4
+        new Process(2, 1, 6),  // Process 2: arrival at 1, burst time 6
+        new Process(3, 2, 5),  // Process 3: arrival at 2, burst time 5
+        new Process(4, 3, 7),  // Process 4: arrival at 3, burst time 7
+        new Process(5, 4, 3),  // Process 5: arrival at 4, burst time 3
+        new Process(6, 5, 8),  // Process 6: arrival at 5, burst time 8
+        new Process(7, 6, 4),  // Process 7: arrival at 6, burst time 4
+      ];
+      setProcesses(ex3);
     } else {
       // Custom: allow manual entry.
       setNumCpus('');
@@ -162,6 +179,7 @@ function App() {
               <option value="custom">Custom</option>
               <option value="example1">Example 1 (2 CPUs, 4 Jobs, Quantum = 1)</option>
               <option value="example2">Example 2 (2 CPUs, 4 Jobs, Quantum = 2)</option>
+              <option value="example3">Example 3 (3 CPUs, 7 Jobs, Quantum = 2)</option>
             </select>
           </div>
         </div>
@@ -233,7 +251,7 @@ function App() {
 
             {/* Visual Timeline Chart */}
             {timeline.length > 0 && (
-              <GanttChartLikeImage timeline={timeline} numCpus={parseInt(numCpus, 10)} quantum={quantum}/>
+              <GanttChartLikeImage timeline={timeline} numCpus={parseInt(numCpus, 10)} quantum={effectiveQuantum}/>
             )}
           </div>
         )}

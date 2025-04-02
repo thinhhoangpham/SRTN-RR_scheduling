@@ -1,9 +1,12 @@
 import React from 'react';
 
-function buildCpuIntervals(timeline, numCpus) {
+function buildCpuIntervals(timeline, numCpus, quantum) {
+  if (quantum < 1) quantum = 1;
+
   const intervals = Array.from({ length: numCpus }, () => []);
   const current = Array.from({ length: numCpus }, () => ({ processID: null, start: 0 }));
 
+  // Build initial intervals
   for (let i = 0; i < timeline.length; i++) {
     const snap = timeline[i];
     const time = snap.time;
@@ -21,6 +24,7 @@ function buildCpuIntervals(timeline, numCpus) {
     });
   }
 
+  // Final interval after last snapshot
   const lastSnapshot = timeline[timeline.length - 1];
   const finalTime = lastSnapshot ? lastSnapshot.time + 1 : 0;
 
@@ -31,13 +35,30 @@ function buildCpuIntervals(timeline, numCpus) {
     }
   }
 
-  return intervals;
+  // Split intervals by quantum
+  const splitIntervals = intervals.map(cpuIntervals => {
+    const result = [];
+    for (const { processID, start, end } of cpuIntervals) {
+      let currStart = start;
+      while (currStart + quantum < end) {
+        result.push({ processID, start: currStart, end: currStart + quantum });
+        currStart += quantum;
+      }
+      if (currStart < end) {
+        result.push({ processID, start: currStart, end: end });
+      }
+    }
+    return result;
+  });
+
+  return splitIntervals;
 }
 
-export default function GanttChartLikeImage({ timeline, numCpus }) {
+
+export default function GanttChartLikeImage({ timeline, numCpus, quantum}) {
   if (!timeline || timeline.length === 0) return null;
 
-  const intervals = buildCpuIntervals(timeline, numCpus);
+  const intervals = buildCpuIntervals(timeline, numCpus, quantum);
   // The final time coordinate is timeline's last snapshot time + 1
   const finalTime = timeline[timeline.length - 1].time + 1;
   const scale = 40; // 1 time unit = 40px

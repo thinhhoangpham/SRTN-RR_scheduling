@@ -94,16 +94,6 @@ export function simulateRR(processes, numCpus, quantum) {
       }
     }
 
-    // 6) Record a snapshot at the end of this tick (time = currentTime + 1).
-    timeline.push({
-      time: currentTime + 1,
-      cpus: cpus.map((cpu, idx) => ({
-        cpuIndex: idx,
-        processID: cpu.process ? cpu.process.id : null,
-      })),
-      queue: [],
-    });
-
     currentTime++;
   }
 
